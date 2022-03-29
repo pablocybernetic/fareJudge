@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wallweb"
+    app:circularflow_radiusInDP="15dp"><![CDATA[
+
+    tools:context=".MainActivity2">
+
+
+
+    ]]>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="347dp"
+        android:layout_height="322dp"
+        app:srcCompat="@drawable/farejudge"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="355dp"
+        android:layout_height="44dp"
+        android:background="@drawable/round_btn"
+        android:text="CONTINUE"
+        app:circularflow_radiusInDP="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.918" />
+</androidx.constraintlayout.widget.ConstraintLayout>
