@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">FareJugde</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Welcom to FareJudge</string>
+    <string name="hello_blank_fragment"> Welcome to FareJudge</string>
+    <string name="rate">rate</string>
+    <string name="personal_details"> Personal Details</string>
+    <string name="view_your_records">View your records</string>
 </resources>

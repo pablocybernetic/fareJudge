@@ -61,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+//        Button button = findViewById(R.id.view_events);
+//        getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                getSupportFragmentManager().beginTransaction().replace(R.id.container,notificationFragment).commit();
+//            }
+//        });
 
 
     }
