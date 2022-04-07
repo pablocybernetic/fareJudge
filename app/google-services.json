@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "803572775311",
+    "project_id": "farejudge-18200",
+    "storage_bucket": "farejudge-18200.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803572775311:android:3ab606a5f8d296a5e973fa",
+        "android_client_info": {
+          "package_name": "com.peter.farejudge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803572775311-2m72b2j9gnph0vlgucfont9mkhibrib3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBikghafRpo5Tozi2hmNJfeyovQUSjvM5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803572775311-2m72b2j9gnph0vlgucfont9mkhibrib3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803572775311:android:5fb755e8ffce02bae973fa",
+        "android_client_info": {
+          "package_name": "easy.tuto.FareJudge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803572775311-2m72b2j9gnph0vlgucfont9mkhibrib3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBikghafRpo5Tozi2hmNJfeyovQUSjvM5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803572775311-2m72b2j9gnph0vlgucfont9mkhibrib3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
