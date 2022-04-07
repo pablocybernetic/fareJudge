@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/setting"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img_2"
@@ -13,9 +14,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="96dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginBottom="652dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginBottom="680dp"
         android:background="@drawable/round_btn"
         android:text="@string/personal_details"
         android:textColor="#B388FF"
@@ -27,6 +28,37 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/name1"
+        android:layout_width="166dp"
+        android:layout_height="33dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="149dp"
+        android:layout_marginBottom="623dp"
+        android:text="TextView"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/mail1"
+        android:layout_width="167dp"
+        android:layout_height="29dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="145dp"
+        android:layout_marginBottom="579dp"
+        android:text="TextView"
+        android:textSize="16sp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="615dp"
+        android:background="#090D23">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>

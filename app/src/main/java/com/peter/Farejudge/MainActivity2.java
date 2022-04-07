@@ -1,12 +1,12 @@
 package com.peter.Farejudge;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -26,7 +26,7 @@ public class MainActivity2 extends AppCompatActivity {
         });
     }
     public void proceedTo() {
-        Intent intent = new Intent (this, MainActivity.class);
+        Intent intent = new Intent (this, ListItems.class);
         startActivity(intent);
         Toast.makeText(this, "Back to where you stop", Toast.LENGTH_SHORT).show();
     }
