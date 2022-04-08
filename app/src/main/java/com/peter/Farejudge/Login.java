@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class Login extends AppCompatActivity {
     private final static int RC_SIGN_IN = 123;
     private FirebaseAuth mAuth;
     private ProgressBar myloader;
+    private Button button;
 
 
     @Override
@@ -45,6 +47,16 @@ public class Login extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(),Profile.class);
             startActivity(intent);
         }
+
+
+//        continue with out login in
+        button = (Button) findViewById(R.id.back);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               goback();
+            }
+        });
 
 
     }
@@ -144,7 +156,7 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            Intent intent = new Intent(getApplicationContext(),test.class);
                             Toast.makeText(Login.this, "Sign in success", Toast.LENGTH_SHORT).show();
                             startActivity(intent);
 
@@ -171,5 +183,11 @@ public class Login extends AppCompatActivity {
 //                            }
 //                5000);
 //    }
+public void goback(){
 
+    Intent intent = new Intent (this,test.class);
+    startActivity(intent);
+    Toast.makeText(this, "Limited Services while not signed in", Toast.LENGTH_SHORT).show();
+
+}
 }

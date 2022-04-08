@@ -26,7 +26,7 @@ public class MainActivity2 extends AppCompatActivity {
         });
     }
     public void proceedTo() {
-        Intent intent = new Intent (this, ListItems.class);
+        Intent intent = new Intent (this,Login.class);
         startActivity(intent);
         Toast.makeText(this, "Back to where you stop", Toast.LENGTH_SHORT).show();
     }

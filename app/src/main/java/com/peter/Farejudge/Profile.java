@@ -18,7 +18,7 @@ public class Profile extends AppCompatActivity {
 
 
     TextView name, mail;
-    Button logout;
+    Button logout,activity;
 
 
     @Override
@@ -33,10 +33,22 @@ public class Profile extends AppCompatActivity {
 
 
       logouta();
+      activity=(Button) findViewById(R.id.buttona);
+      activity.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              goback();
+          }
+      });
 
 
-}
+    }
+    private void goback(){
 
+        Intent intent = new Intent (this,test.class);
+        startActivity(intent);
+
+    }
 
     public void logouta(){
 
