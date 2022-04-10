@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.loader.content.Loader;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -156,7 +155,7 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(getApplicationContext(),test.class);
+                            Intent intent = new Intent(getApplicationContext(), Details.class);
                             Toast.makeText(Login.this, "Sign in success", Toast.LENGTH_SHORT).show();
                             startActivity(intent);
 
@@ -185,7 +184,7 @@ public class Login extends AppCompatActivity {
 //    }
 public void goback(){
 
-    Intent intent = new Intent (this,test.class);
+    Intent intent = new Intent (this, Details.class);
     startActivity(intent);
     Toast.makeText(this, "Limited Services while not signed in", Toast.LENGTH_SHORT).show();
 

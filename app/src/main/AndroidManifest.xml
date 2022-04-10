@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BottomNavigationFragmentDemo">
         <activity
-            android:name=".test"
+            android:name=".home"
+            android:exported="false" />
+        <activity
+            android:name=".Details"
             android:exported="false" />
         <activity
             android:name=".ListItems"

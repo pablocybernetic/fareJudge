@@ -1,6 +1,8 @@
 package com.peter.Farejudge;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -9,11 +11,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class test extends AppCompatActivity {
+public class Details extends AppCompatActivity {
+    private long pressedTime;
+
     // Array of strings storing country names
     String[] visits = new String[] {
             "Ufanisi Resort",
@@ -76,7 +83,7 @@ public class test extends AppCompatActivity {
             HashMap<String, String> hm = new HashMap<String,String>();
             hm.put("txt", "Visits : " + visits[i]);
             hm.put("cur"," Location : " + place[i]);
-            hm.put("flag", Integer.toString(img [i]) );
+            hm.put("flag",Integer.toString(img[i]));
             aList.add(hm);
             arrayList.add("hh");
         }
@@ -88,7 +95,7 @@ public class test extends AppCompatActivity {
         int[] to = { R.id.flag,R.id.txt,R.id.cur};
 
         // Instantiating an adapter to store each items
-        // R.layout.listview_layout defines the layout of each item
+//         R.layout.listview_layout defines the layout of each item
         SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.listview_layout, from, to);
 
         // Getting a reference to listview of main.xml layout file
@@ -99,8 +106,48 @@ public class test extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(test.this, "clicked item:"+i+" "+place.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Details.this, "clicked item:"+i+" "+place.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setSelectedItemId(R.id.dashboard);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(),
+                                home.class));
+                        return true;
+                    case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(),
+                                Profile.class));
+                        return true;
+                    case R.id.dashboard:
+                        startActivity(new Intent(getApplicationContext(),
+                                Details.class));
+                        return true;
+                }
+
+                return false;
+            }
+        });
+
+
+
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
 }
