@@ -65,11 +65,25 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getdata ()
+    public Cursor getdata()
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Userdetails", null);
         return cursor;
     }
+//  public List getEveryone(){
+//        List returnList = new ArrayList<>();
+//        String queryString = "SELECT * FROM UserDetails";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//      Cursor cursor = db.rawQuery(queryString);
+//      if(cursor.moveToFirst()){
+//          do {
+//              int
+//          }while (cursor.moveToFirst());
+//      }else {
+//
+//      }
+//      return returnList;
+//  }
 }
 

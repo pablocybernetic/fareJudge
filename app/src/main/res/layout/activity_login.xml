@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img_2"
-    tools:context=".MainActivity"
+    tools:context=".Login"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="100dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp">
+        android:paddingLeft="20dp"
+        android:paddingTop="100dp"
+        android:paddingRight="20dp">
 
 
         <ImageView
@@ -49,7 +49,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="100dp"/>
+            android:layout_height="100dp" />
 
 
         <Button
@@ -57,7 +57,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round_dbtn"
-            android:text="sign in  later" />
+            android:text="sign in  later"
+            android:textColor="#0914E8" />
+
+        <Space
+            android:layout_width="364dp"
+            android:layout_height="42dp" />
 
         <Button
             android:id="@+id/google_signIn"
@@ -66,35 +71,7 @@
             android:background="@drawable/round_btn"
             android:elevation="8dp"
             android:text="Sign In with Google"
-            android:textColor="#fff" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="100dp"
-            android:paddingRight="100dp"
-            android:layout_marginTop="160dp">
-
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-
-
-        </LinearLayout>
+            android:textColor="#0B16F3" />
 
 
         <TextView
@@ -104,7 +81,7 @@
             android:gravity="bottom"
             android:includeFontPadding="false"
             android:shadowColor="#0E0E0E"
-            android:text="Farejudge"
+            android:text="Farejudge 2022"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="14sp" />

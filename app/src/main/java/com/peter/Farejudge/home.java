@@ -7,12 +7,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,10 +19,12 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class home extends AppCompatActivity {
 
+    private static final int RESULT_LOAD_IMG = 1;
     TextView name, mail;
     Button logout,activity,insert, view1;
     EditText name1, contact, dob;
     DBHelper DB;
+    ImageView image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,16 +61,18 @@ public class home extends AppCompatActivity {
                 StringBuffer buffer = new StringBuffer();
                 while(res.moveToNext()){
                     buffer.append("Name :"+res.getString(0)+"\n");
-                    buffer.append("Contact :"+res.getString(1)+"\n");
-                    buffer.append("Date of Birth :"+res.getString(2)+"\n\n");
+                    buffer.append("Location :"+res.getString(1)+"\n");
+                    buffer.append("Date of Establishment :"+res.getString(2)+"\n\n");
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(home.this);
                 builder.setCancelable(true);
-                builder.setTitle("User Entries");
+                builder.setTitle("Establishments");
                 builder.setMessage(buffer.toString());
                 builder.show();
             }        });
+
+
 
 
 //        logout = findViewById(R.id.logout);
@@ -81,7 +84,16 @@ public class home extends AppCompatActivity {
 //            mail.setText(signInAccount.getEmail());
         }
 
-
+image  = (ImageView) findViewById(R.id.img);
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
+                Toast.makeText(home.this, "Select an image from the Gallery", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
