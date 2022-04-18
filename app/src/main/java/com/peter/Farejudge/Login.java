@@ -133,7 +133,7 @@ public class Login extends AppCompatActivity {
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 // ...
-                Toast.makeText(this, " No Internet Connection ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, " Faild to connect ", Toast.LENGTH_SHORT).show();
             }
         }
     }

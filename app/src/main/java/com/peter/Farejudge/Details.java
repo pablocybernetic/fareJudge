@@ -1,6 +1,7 @@
 package com.peter.Farejudge;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,8 +11,11 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
@@ -20,6 +24,8 @@ import java.util.List;
 
 public class Details extends AppCompatActivity {
     private long pressedTime;
+    private RecyclerView recyclerView;
+    FloatingActionButton add_button;
 
     // Array of strings storing country names
     String[] visits = new String[] {
@@ -71,10 +77,80 @@ public class Details extends AppCompatActivity {
 //    list.add(30);
 
 
+
+
+
+
+    DBHelper myDB;
+    ArrayList<String> date, name, review, service;
+    CustomAdapter customAdapter;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+//        floating action bar
+        add_button =findViewById(R.id.floatingActionButton);
+        add_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Details.this,home.class);
+                startActivity(intent);
+            }
+        });
+
+        recyclerView = findViewById(R.id.recyclerView);
+        myDB = new DBHelper(Details.this);
+        name = new ArrayList<>();
+        review = new ArrayList<>();
+        service = new ArrayList<>();
+        storeDataArray();
+        customAdapter = new CustomAdapter(Details.this,name ,service,review,date);
+        recyclerView.setAdapter(customAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(Details.this));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Each row in the list stores country name, currency and flag
         List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
@@ -142,6 +218,23 @@ public class Details extends AppCompatActivity {
 
 
     }
+
+    void storeDataArray(){
+        Cursor cursor = myDB.readAllData();
+        if(cursor.getCount()==0){
+            Toast.makeText(this, "No Establishments Yet...", Toast.LENGTH_SHORT).show();
+        }else{
+            while (cursor.moveToNext()){
+                name.add(cursor.getString(0));
+                service.add(cursor.getString(1));
+                review.add(cursor.getString(2));
+//                date.add(cursor.getString(3));
+
+            }
+        }
+    }
+
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(Intent.ACTION_MAIN);

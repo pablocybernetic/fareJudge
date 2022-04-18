@@ -16,6 +16,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+
 
 public class Profile extends AppCompatActivity {
 
@@ -33,6 +36,11 @@ public class Profile extends AppCompatActivity {
         logout = findViewById(R.id.logout);
         name = findViewById(R.id.name);
         mail = findViewById(R.id.mail);
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        String CurrentDate = DateFormat.getDateInstance(DateFormat.LONG).format(calendar.getTime());
+        TextView date = (TextView) findViewById(R.id.date);
+        date.setText(CurrentDate);
 
 
       logouta();

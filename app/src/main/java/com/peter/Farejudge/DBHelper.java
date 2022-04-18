@@ -1,4 +1,5 @@
 package com.peter.Farejudge;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,19 +12,21 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table Userdetails(name TEXT primary key, contact TEXT, dob TEXT)");
+        DB.execSQL("create Table Userdetails(name TEXT primary key, contact TEXT, date TEXT, dob TEXT)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase DB, int i, int ii) {
         DB.execSQL("drop Table if exists Userdetails");
     }
-    public Boolean insertuserdata(String name1, String contact, String dob)
+    public Boolean insertuserdata(String name1, String contact, String date, String dob)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name1);
         contentValues.put("contact", contact);
+        contentValues.put("date", date);
         contentValues.put("dob", dob);
+
         long result=DB.insert("Userdetails", null, contentValues);
         if(result==-1){
             return false;
@@ -85,5 +88,16 @@ public class DBHelper extends SQLiteOpenHelper {
 //      }
 //      return returnList;
 //  }
+
+    Cursor readAllData(){
+        String query = "SELECT * FROM Userdetails";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if(db != null){
+            cursor =db.rawQuery(query, null);
+
+        }
+        return  cursor;
+    }
 }
 

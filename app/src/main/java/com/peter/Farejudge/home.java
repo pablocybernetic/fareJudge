@@ -17,6 +17,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+
 public class home extends AppCompatActivity {
 
     private static final int RESULT_LOAD_IMG = 1;
@@ -42,8 +45,11 @@ public class home extends AppCompatActivity {
                 String nameTXT = name1.getText().toString();
                 String contactTXT = contact.getText().toString();
                 String dobTXT = dob.getText().toString();
+                Calendar calendar;
+                calendar = Calendar.getInstance();
+                String CurrentDate = DateFormat.getDateInstance(DateFormat.LONG).format(calendar.getTime());
 
-                Boolean checkinsertdata = DB.insertuserdata(nameTXT, contactTXT, dobTXT);
+                Boolean checkinsertdata = DB.insertuserdata(nameTXT, contactTXT,CurrentDate,  dobTXT);
                 if(checkinsertdata==true)
                     Toast.makeText(home.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
                 else
@@ -62,7 +68,9 @@ public class home extends AppCompatActivity {
                 while(res.moveToNext()){
                     buffer.append("Name :"+res.getString(0)+"\n");
                     buffer.append("Location :"+res.getString(1)+"\n");
+                    buffer.append("Review :"+res.getString(3)+"\n");
                     buffer.append("Date of Establishment :"+res.getString(2)+"\n\n");
+
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(home.this);

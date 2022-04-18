@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BottomNavigationFragmentDemo">
         <activity
+            android:name=".Establishment"
+            android:exported="false" />
+        <activity
             android:name=".home"
             android:exported="false" />
         <activity
             android:name=".Details"
-            android:exported="false" />
-        <activity
-            android:name=".ListItems"
             android:exported="false" />
         <activity
             android:name=".Profile"
@@ -33,15 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.y" />
-            </intent-filter>
-        </activity>
     </application>
+    <!-- Required only when requesting background location access on
+       Android 10 (API level 29) and higher. -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
 </manifest>
