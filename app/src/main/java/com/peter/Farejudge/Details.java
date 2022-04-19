@@ -10,7 +10,9 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Details extends AppCompatActivity {
+    private  DBHelper DB;
     private long pressedTime;
     private RecyclerView recyclerView;
     FloatingActionButton add_button;
@@ -91,6 +94,8 @@ public class Details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        DB = new DBHelper(this);
+
 //        floating action bar
         add_button =findViewById(R.id.floatingActionButton);
         add_button.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +114,22 @@ public class Details extends AppCompatActivity {
         storeDataArray();
         customAdapter = new CustomAdapter(Details.this,name ,service,review,date);
         recyclerView.setAdapter(customAdapter);
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                try {
+                    delete();
+                }catch (Exception e){
+                    Toast.makeText(Details.this, "failed", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }).attachToRecyclerView(recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(Details.this));
 //        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
 //            @Override
@@ -121,6 +142,8 @@ public class Details extends AppCompatActivity {
 //
 //            }
 //        })
+
+
 
 
 
@@ -247,6 +270,14 @@ public class Details extends AppCompatActivity {
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+    public void delete(){
+        String nameTXT = name.toString();
+        Boolean checkudeletedata = DB.deletedata(nameTXT);
+        if(checkudeletedata==true)
+            Toast.makeText(Details.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(Details.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();
     }
 
 }
