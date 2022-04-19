@@ -272,9 +272,11 @@ public class Details extends AppCompatActivity {
         startActivity(intent);
     }
     public void delete(){
+//        String nameTXT = name.getText().toString();
         String nameTXT = name.toString();
+
         Boolean checkudeletedata = DB.deletedata(nameTXT);
-        if(checkudeletedata==true)
+        if(checkudeletedata)
             Toast.makeText(Details.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(Details.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();
