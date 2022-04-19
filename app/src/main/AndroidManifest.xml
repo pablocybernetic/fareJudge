@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.peter.Farejudge">
+    <!--
+       Required only when requesting background location access on
+       Android 10 (API level 29) and higher.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -9,6 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BottomNavigationFragmentDemo">
+        <activity
+            android:name=".UpdateItems"
+            android:exported="false" />
         <activity
             android:name=".Establishment"
             android:exported="false" />
@@ -34,8 +42,5 @@
             </intent-filter>
         </activity>
     </application>
-    <!-- Required only when requesting background location access on
-       Android 10 (API level 29) and higher. -->
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
 </manifest>

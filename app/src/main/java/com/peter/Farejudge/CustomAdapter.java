@@ -43,6 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.service_txt.setText(String.valueOf(service.get(position)));
 //        holder.review_txt.setText(String.valueOf(review.get(position)));
         holder.date_txt.setText(String.valueOf(date.get(position)));
+
     }
 
     @Override

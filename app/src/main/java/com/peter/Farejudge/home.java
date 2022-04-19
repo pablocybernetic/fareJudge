@@ -10,15 +10,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class home extends AppCompatActivity {
 
@@ -32,12 +36,12 @@ public class home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        name1 = findViewById(R.id.estname);
-        contact = findViewById(R.id.estlocation);
-        dob= findViewById(R.id.review);
-        insert = findViewById(R.id.btnInsert);
+        name1 = findViewById(R.id.estname2);
+        contact = findViewById(R.id.estlocation2);
+        dob= findViewById(R.id.review2);
+        insert = findViewById(R.id.delete2);
         DB = new DBHelper(this);
-        view1 =findViewById(R.id.view1);
+        view1 =findViewById(R.id.update2);
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,11 +49,15 @@ public class home extends AppCompatActivity {
                 String nameTXT = name1.getText().toString();
                 String contactTXT = contact.getText().toString();
                 String dobTXT = dob.getText().toString();
+
                 Calendar calendar;
                 calendar = Calendar.getInstance();
                 String CurrentDate = DateFormat.getDateInstance(DateFormat.LONG).format(calendar.getTime());
 
-                Boolean checkinsertdata = DB.insertuserdata(nameTXT, contactTXT,CurrentDate,  dobTXT);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd  'at' HH:mm:ss ");
+                String currentDateandTime = sdf.format(new Date());
+
+                Boolean checkinsertdata = DB.insertuserdata(nameTXT, contactTXT,currentDateandTime,  dobTXT);
                 if(checkinsertdata==true)
                     Toast.makeText(home.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
                 else
