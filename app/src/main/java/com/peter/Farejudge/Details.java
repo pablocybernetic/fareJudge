@@ -3,9 +3,12 @@ package com.peter.Farejudge;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -29,6 +32,7 @@ public class Details extends AppCompatActivity {
     private long pressedTime;
     private RecyclerView recyclerView;
     FloatingActionButton add_button;
+    EditText editText;
 
     // Array of strings storing country names
     String[] visits = new String[] {
@@ -73,17 +77,7 @@ public class Details extends AppCompatActivity {
             "Ngong"
     };
     final ArrayList<String> arrayList=new ArrayList<>();
-//    arrayList.add("hh");
-//List<Integer> list=new ArrayList<>();
-//    list.add(Integer.valueOf(10));//storing Integer object
-//    list.add(20);//Now compiler converts it into Integer.valueOf(20) which is object
-//    list.add(30);
-
-
-
-
-
-
+// database
     DBHelper myDB;
     ArrayList<String> date, name, review, service;
     CustomAdapter customAdapter;
@@ -123,7 +117,7 @@ public class Details extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 try {
-                    delete();
+                    delete((String) viewHolder.itemView.getTag().toString());
                 }catch (Exception e){
                     Toast.makeText(Details.this, "failed", Toast.LENGTH_SHORT).show();
                 }
@@ -131,18 +125,25 @@ public class Details extends AppCompatActivity {
             }
         }).attachToRecyclerView(recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(Details.this));
-//        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
-//            @Override
-//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-//
-//            }
-//        })
 
+
+        editText = findViewById(R.id.edittext);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
 
 
@@ -248,6 +249,20 @@ public class Details extends AppCompatActivity {
 
     }
 
+    private void delete(String tag) {
+        String nameTXT = name.toString();
+        Boolean checkudeletedata = DB.deletedata(nameTXT);
+        if(checkudeletedata==true)
+            Toast.makeText(Details.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(Details.this, "Entry Not Deleted"+name, Toast.LENGTH_SHORT).show();
+    }
+
+    private void filter(String text) {
+        ArrayList<CustomAdapter> filteredList = new ArrayList<>();
+
+    }
+
     void storeDataArray(){
         Cursor cursor = myDB.readAllData();
         if(cursor.getCount()==0){
@@ -271,7 +286,7 @@ public class Details extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-    public void delete(){
+    public void delete(Object name){
 //        String nameTXT = name.getText().toString();
         String nameTXT = name.toString();
 
@@ -279,7 +294,7 @@ public class Details extends AppCompatActivity {
         if(checkudeletedata)
             Toast.makeText(Details.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(Details.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Details.this, "Entry Not Deleted "+nameTXT, Toast.LENGTH_SHORT).show();
     }
 
 }
