@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,8 +47,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 //        holder.review_txt.setTag(review);
 
         holder.itemView.setTag(name);
-        
+        setFadeAnimation(holder.itemView);
 
+
+    }
+
+    public void setFadeAnimation(View view) {
+        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(500);
+        view.startAnimation(anim);
     }
 
     @Override

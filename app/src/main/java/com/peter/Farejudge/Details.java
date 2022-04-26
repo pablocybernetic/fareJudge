@@ -3,13 +3,12 @@ package com.peter.Farejudge;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -32,6 +31,7 @@ public class Details extends AppCompatActivity {
     private long pressedTime;
     private RecyclerView recyclerView;
     FloatingActionButton add_button;
+    private SearchView searchView;
     EditText editText;
 
     // Array of strings storing country names
@@ -117,7 +117,12 @@ public class Details extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 try {
-                    delete((String) viewHolder.itemView.getTag().toString());
+//                    String fullName = name.getText().toString();
+
+                    Intent intent = new Intent(Details.this, UpdateItems.class);
+                    startActivity(intent);
+
+
                 }catch (Exception e){
                     Toast.makeText(Details.this, "failed", Toast.LENGTH_SHORT).show();
                 }
@@ -125,27 +130,19 @@ public class Details extends AppCompatActivity {
             }
         }).attachToRecyclerView(recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(Details.this));
-
-
-        editText = findViewById(R.id.edittext);
-        editText.addTextChangedListener(new TextWatcher() {
+        searchView = findViewById(R.id.search);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            public boolean onQueryTextSubmit(String s) {
+                return false;
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                filter(s.toString());
+            public boolean onQueryTextChange(String s) {
+                return false;
             }
         });
-
-
 
 
 
