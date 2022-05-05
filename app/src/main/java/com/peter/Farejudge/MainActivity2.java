@@ -8,9 +8,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity2 extends AppCompatActivity {
 
     private Button button;
+    Timer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +28,18 @@ public class MainActivity2 extends AppCompatActivity {
                 proceedTo();
             }
         });
+
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Intent intent = new Intent (MainActivity2.this,Login.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 3500);
+
+
     }
     public void proceedTo() {
         Intent intent = new Intent (this,Login.class);

@@ -1,11 +1,13 @@
 package com.peter.Farejudge;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cursoradapter.widget.SimpleCursorAdapter;
 
@@ -91,7 +94,6 @@ public class EstablishmentListActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         EditText searchView = findViewById(R.id.search);
-        Toast.makeText(this, ""+ cursor, Toast.LENGTH_LONG).show();
 
         searchView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -118,8 +120,7 @@ public class EstablishmentListActivity extends AppCompatActivity {
 
             }
         });
-        String nik = from.toString();
-        Toast.makeText(this, "to"+nik, Toast.LENGTH_LONG).show();
+
 
         // OnCLickListener For List Items
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -153,6 +154,7 @@ public class EstablishmentListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+
         return true;
     }
 
@@ -164,6 +166,78 @@ public class EstablishmentListActivity extends AppCompatActivity {
 
             Intent add_mem = new Intent(this, AddEstablishment.class);
             startActivity(add_mem);
+
+        }else if(id== R.id.deleteAll){
+            Toast.makeText(this, "working", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder
+                    = new AlertDialog
+                    .Builder(this);
+
+            // Set the message show for the Alert time
+            builder.setMessage("Are you sure you want to clear all Establishment ?");
+
+            // Set Alert Title
+            builder.setTitle("Cation Deleting!!");
+
+            // Set Cancelable false
+            // for when the user clicks on the outside
+            // the Dialog Box then it will remain show
+            builder.setCancelable(false);
+
+
+            // Set the positive button with yes name
+            // OnClickListener method is use of
+            // DialogInterface interface.
+
+            builder
+                    .setPositiveButton(
+                            "Yes",
+                            new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which)
+                                {
+                                    dbManager.deleteAll();
+                                    if (dbManager.deleteAll()){
+                                        Toast.makeText(EstablishmentListActivity.this, "Deleting Successful", Toast.LENGTH_LONG).show();
+
+                                    }else {
+                                        Toast.makeText(EstablishmentListActivity.this, "Failed to delete", Toast.LENGTH_SHORT).show();
+                                    }
+                                    // When the user click yes button
+                                    // then app will close
+
+                                }
+                            });
+
+            // Set the Negative button with No name
+            // OnClickListener method is use
+            // of DialogInterface interface.
+            builder
+                    .setNegativeButton(
+
+                            "No",
+                            new DialogInterface
+                                    .OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which)
+                                {
+
+                                    // If user click no
+                                    // then dialog box is canceled.
+                                    dialog.cancel();
+                                }
+                            });
+
+            // Create the Alert dialog
+            AlertDialog alertDialog = builder.create();
+            alertDialog.setIcon(R.drawable.ic_baseline_delete_24);
+
+
+            // Show the Alert Dialog box
+            alertDialog.show();
 
         }
         return super.onOptionsItemSelected(item);

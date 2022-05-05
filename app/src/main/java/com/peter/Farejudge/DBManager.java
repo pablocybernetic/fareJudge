@@ -68,5 +68,9 @@ public class DBManager {
     public void delete(long _id) {
         database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper._ID + "=" + _id, null);
     }
+    public boolean deleteAll() {
+        database.rawQuery("DELETE  FROM farejudge", null);
+        return true;
+    }
 
 }

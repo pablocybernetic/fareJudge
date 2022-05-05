@@ -11,4 +11,18 @@
         android:title="Add Establishments"
         app:showAsAction="always"/>
 
+
+    <item
+        android:id="@+id/item2"
+        android:title="Reset Everything"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/deleteAll"
+        android:title="Delete all"
+        app:showAsAction="never">
+
+
+    </item>
+
 </menu>
