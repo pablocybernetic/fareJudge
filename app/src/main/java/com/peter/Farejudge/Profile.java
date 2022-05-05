@@ -2,19 +2,23 @@ package com.peter.Farejudge;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.SignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -25,6 +29,7 @@ public class Profile extends AppCompatActivity {
 
     TextView name, mail;
     Button logout,activity;
+    ImageView profile ;
 
 
     @Override
@@ -63,7 +68,7 @@ public class Profile extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.home:
                     startActivity(new Intent(getApplicationContext(),
-                            home.class));
+                            AddEstablishment.class));
                         return true;
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(),
@@ -71,7 +76,7 @@ public class Profile extends AppCompatActivity {
                         return true;
                     case R.id.dashboard:
                         startActivity(new Intent(getApplicationContext(),
-                                Details.class));
+                                EstablishmentListActivity.class));
                         return true;
                 }
 
@@ -80,10 +85,12 @@ public class Profile extends AppCompatActivity {
         });
 
 
+
+
     }
     private void goback(){
 
-        Intent intent = new Intent (this, Details.class);
+        Intent intent = new Intent (this, EstablishmentListActivity.class);
         startActivity(intent);
 
     }
@@ -93,11 +100,30 @@ public class Profile extends AppCompatActivity {
 
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         if(signInAccount != null){
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
             name.setText(signInAccount.getDisplayName());
             mail.setText(signInAccount.getEmail());
+
+            profile = findViewById(R.id.btnUpdateImage);
+//            Uri photoUrl = user.getPhotoUrl();
+
+//            profile.setImageURI(photoUrl);
+
         }
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
 
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getToken() instead.
+            String uid = user.getUid();
+        }
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

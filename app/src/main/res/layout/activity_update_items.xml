@@ -81,7 +81,7 @@
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <EditText
-        android:id="@+id/estname2"
+        android:id="@+id/estname3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -96,7 +96,7 @@
         app:layout_constraintVertical_bias="0.394" />
 
     <EditText
-        android:id="@+id/estlocation2"
+        android:id="@+id/service3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -139,7 +139,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/review2"
+        android:id="@+id/review3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

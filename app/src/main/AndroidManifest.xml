@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.peter.Farejudge">
+    package="com.peter.Farejudge" >
     <!--
        Required only when requesting background location access on
        Android 10 (API level 29) and higher.
@@ -13,18 +13,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BottomNavigationFragmentDemo">
+        android:theme="@style/Theme.BottomNavigationFragmentDemo" >
         <activity
-            android:name=".UpdateItems"
+            android:name=".EstablishmentListActivity"
+            android:exported="false"
+            android:label="Establishmentlist"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+        <activity
+            android:name=".EditEstablishmentActivity"
             android:exported="false" />
         <activity
             android:name=".Establishment"
             android:exported="false" />
         <activity
-            android:name=".home"
-            android:exported="false" />
-        <activity
-            android:name=".Details"
+            android:name=".AddEstablishment"
             android:exported="false" />
         <activity
             android:name=".Profile"
@@ -34,7 +36,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity2"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
