@@ -130,19 +130,22 @@ public class EstablishmentListActivity extends AppCompatActivity {
                 TextView titleTextView = (TextView) view.findViewById(R.id.title);
 //                TextView dateTextView = (TextView) view.findViewById(R.id.date1);
                 TextView descTextView = (TextView) view.findViewById(R.id.desc);
+                TextView Name = (TextView) view.findViewById(R.id.nameEst);
 
 
 
                 String id = idTextView.getText().toString();
                 String title = titleTextView.getText().toString();
                 String desc = descTextView.getText().toString();
+                String EstName = Name.getText().toString();
+
 //                String date = dateTextView.getText().toString();
 
                 Intent modify_intent = new Intent(getApplicationContext(), EditEstablishmentActivity.class);
                 modify_intent.putExtra("title", title);
                 modify_intent.putExtra("desc", desc);
                 modify_intent.putExtra("id", id);
-
+                modify_intent.putExtra("name", EstName);
                 startActivity(modify_intent);
             }
         });
@@ -177,7 +180,7 @@ public class EstablishmentListActivity extends AppCompatActivity {
             builder.setMessage("Are you sure you want to clear all Establishment ?");
 
             // Set Alert Title
-            builder.setTitle("Cation Deleting!!");
+            builder.setTitle(" All Establishments will be lost!!");
 
             // Set Cancelable false
             // for when the user clicks on the outside

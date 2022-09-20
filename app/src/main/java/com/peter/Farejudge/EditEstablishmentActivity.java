@@ -14,7 +14,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class EditEstablishmentActivity extends Activity implements OnClickListener {
 
-    private EditText titleText;
+    private EditText titleText, estName;
     private Button updateBtn, deleteBtn;
     private EditText descText;
 
@@ -61,7 +61,9 @@ public class EditEstablishmentActivity extends Activity implements OnClickListen
         dbManager.open();
 
         titleText = (EditText) findViewById(R.id.service3);
-        descText = (EditText) findViewById(R.id.estname3);
+        descText = (EditText) findViewById(R.id.review3);
+        estName = (EditText) findViewById(R.id.estname3) ;
+
 
         updateBtn = (Button) findViewById(R.id.update2);
         deleteBtn = (Button) findViewById(R.id.delete2);
@@ -70,11 +72,13 @@ public class EditEstablishmentActivity extends Activity implements OnClickListen
         String id = intent.getStringExtra("id");
         String name = intent.getStringExtra("title");
         String desc = intent.getStringExtra("desc");
+        String EstName = intent.getStringExtra("name");
 
         _id = Long.parseLong(id);
 
         titleText.setText(name);
         descText.setText(desc);
+        estName.setText(EstName);
 
         updateBtn.setOnClickListener(this);
         deleteBtn.setOnClickListener(this);
@@ -86,8 +90,9 @@ public class EditEstablishmentActivity extends Activity implements OnClickListen
             case R.id.update2:
                 String title = titleText.getText().toString();
                 String desc = descText.getText().toString();
+                String EstName = estName.getText().toString();
 
-                dbManager.update(_id, title, desc);
+                dbManager.update(_id, title, desc,EstName);
                 this.returnHome();
                 break;
 

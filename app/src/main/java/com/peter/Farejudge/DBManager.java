@@ -57,10 +57,11 @@ public class DBManager {
         return cursor1;
     }
 
-    public int update(long _id, String name, String desc) {
+    public int update(long _id, String name, String desc, String Name) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.SUBJECT, name);
         contentValues.put(DatabaseHelper.DESC, desc);
+        contentValues.put(DatabaseHelper.NAME, Name);
         int i = database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper._ID + " = " + _id, null);
         return i;
     }

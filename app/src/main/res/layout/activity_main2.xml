@@ -15,12 +15,12 @@
 
     <ImageView
         android:id="@+id/btnUpdateImage"
-        android:layout_width="347dp"
-        android:layout_height="322dp"
+        android:layout_width="378dp"
+        android:layout_height="268dp"
         app:srcCompat="@drawable/farejudge"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="5dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="5dp" />
 
     <Button
         android:id="@+id/btnContinue"
@@ -29,6 +29,7 @@
         android:background="@drawable/round_btn"
         android:shadowColor="#2C43C3"
         android:text="CONTINUE"
+        android:visibility="visible"
         app:circularflow_radiusInDP="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

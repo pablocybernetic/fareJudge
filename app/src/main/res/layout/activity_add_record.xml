@@ -42,12 +42,6 @@
         <requestFocus />
     </EditText>
 
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/round_dbtn" />
-
     <EditText
         android:id="@+id/description_edittext"
         android:layout_width="359dp"
